@@ -1,0 +1,231 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #f1f1f1;
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* Layout */
+.admin-container {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px; /* Sidebar - Main - Right Panel */
+    grid-gap: 0; /* Remove any spacing */
+    width: 100vw; /* Make sure it spans the full screen */
+    height: 100vh; /* Fix height */
+    position: relative; /* Ensure it stays within the viewport */
+    top: 0;
+    left: 0;
+    overflow: hidden; /* Prevent unwanted scroll on the entire container */
+}
+
+.admin-sidebar,
+.admin-main,
+.admin-notifications {
+    height: 100vh; /* Ensures each section takes up full height */
+    overflow: auto; /* Allows internal scrolling if needed */
+}
+
+
+/* Sidebar */
+
+.admin-sidebar {
+    background: #151918; /* Match the user sidebar background */
+    color: #f1f1f1; /* Match the text color */
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1); /* Match the shadow effect */
+    border-radius: 0; /* Ensure no rounded edges */
+    position: relative; /* Ensure it stays in its grid cell */
+    z-index: 2; /* Sidebar stays above other elements */
+    grid-column: 1; /* Sidebar in the first column */
+}
+
+.admin-sidebar h2 {
+    margin-top: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #404444;
+}
+
+.admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.admin-sidebar li {
+    margin: 12px 0;
+}
+
+.admin-sidebar li.logout {
+    margin-top: auto;
+    border-top: 1px solid #404444;
+    padding-top: 16px;
+}
+
+.admin-sidebar a {
+    color: #f1f1f1;
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar li.active a {
+    background: #2a2f2f;
+}
+
+.admin-sidebar li.active a {
+    position: relative;
+}
+
+.admin-sidebar li.active a::after {
+    content: '';
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 80%;
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.admin-sidebar .icon {
+    width: 20px;
+    height: 20px;
+    color: #f1f1f1;
+    display: inline-block;
+    vertical-align: middle; /* Aligns the icon with the text */
+    margin-top: 2px; /* Pushes the icon down slightly */
+}
+
+/* Main Content */
+.admin-main {
+    padding: 24px;
+    background: #fff;
+    margin: 0; 
+    position: relative;
+    z-index: 1; /* Main content stays below the sidebar */
+    min-height: 100vh;
+    overflow: hidden;
+    box-shadow: none; 
+    border-radius: 0;
+    grid-column: 2; /* Main content in the second column */
+}
+
+.main-content {
+    overflow-y: auto; /* Enable scrolling */
+    height: 100vh; /* Full height */
+    padding: 16px; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding in height calculation */
+    background: #f9f9f9; /* Subtle background color */
+}
+
+/* Quick Stats Cards */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller cards */
+    gap: 12px; /* Reduce spacing between cards */
+    margin-top: 16px; /* Add space above the cards */
+}
+
+.card {
+    background: #fff;
+    padding: 12px; /* Reduce padding inside cards */
+    border-radius: 6px; /* Slightly rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.card h3 {
+    font-size: 1rem; /* Smaller heading */
+    color: #404444;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 1.8rem; /* Slightly smaller numbers */
+    font-weight: bold;
+    color: #151918;
+}
+
+/* User Statistics */
+.user-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller stats cards */
+    gap: 12px; /* Reduce spacing between stats */
+    margin-top: 16px;
+}
+
+.user-stats .stat {
+    background: #fff;
+    padding: 12px; /* Reduce padding */
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.user-stats .stat h3 {
+    font-size: 1rem; /* Smaller heading */
+    color: #404444;
+    margin-bottom: 8px;
+}
+
+.user-stats .stat p {
+    font-size: 1.8rem; /* Slightly smaller numbers */
+    font-weight: bold;
+    color: #151918;
+}
+
+
+/* Right Panel */
+.admin-notifications {
+    background: #e6e6e6;
+    padding: 16px;
+    height: 100vh;
+    overflow-y: auto;
+    grid-column: 3; /* Notifications in the third column */
+}
+
+/* Recent Activity */
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recent-activity li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem; /* Smaller text */
+    color: #404444;
+}
+
+.recent-activity li:last-child {
+    border-bottom: none;
+}
+
+.placeholder-box {
+    background: #f1f1f1;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: #404444;
+  }
+  
